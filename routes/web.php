@@ -1,18 +1,21 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;   // ← WAJIB ADA
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// Menampilkan daftar menu
+Route::get('/menu', [MenuController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Menampilkan form tambah menu
+Route::get('/tambahmenu', [MenuController::class, 'create']);
+
+// Menyimpan menu baru
+Route::post('/tambahmenu', [MenuController::class, 'store']);
+
+// Menampilkan form edit menu
+Route::get('/editmenu/{id}', [MenuController::class, 'edit']);
+
+// Update data menu
+Route::post('/editmenu/{id}', [MenuController::class, 'update']);
+
+// Hapus data menu
+Route::get('/hapusmenu/{id}', [MenuController::class, 'destroy']);
